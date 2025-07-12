@@ -14,7 +14,7 @@ spring:
     activate:
       on-profile: docklet-db-dev
   datasource:
-    url: jdbc:postgresql://postgres:5432/appdb
+    url: jdbc:postgresql://localhost:5432/appdb
     username: appuser
     password: appsecret
     driver-class-name: org.postgresql.Driver
