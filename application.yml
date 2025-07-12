@@ -1,0 +1,92 @@
+# ===== Глобальные настройки (для всех) =====
+server:
+  error:
+    include-message: always
+
+jwt:
+  secret: "mySuperSecretKeyThatIsAtLeast32CharsLong!!!"
+  expirationMs: 3600000
+
+# ===== DB DEV =====
+---
+spring:
+  config:
+    activate:
+      on-profile: docklet-db-dev
+  datasource:
+    url: jdbc:postgresql://postgres:5432/appdb
+    username: appuser
+    password: appsecret
+    driver-class-name: org.postgresql.Driver
+
+# ===== DB PROD =====
+---
+spring:
+  config:
+    activate:
+      on-profile: docklet-db-prod
+  datasource:
+    url: jdbc:postgresql://postgres-prod:5432/appdb
+    username: produser
+    password: prodsecret
+    driver-class-name: org.postgresql.Driver
+
+# ===== REDIS DEV =====
+---
+spring:
+  config:
+    activate:
+      on-profile: docklet-redis-dev
+  redis:
+    host: redis
+    port: 6379
+
+# ===== REDIS PROD =====
+---
+spring:
+  config:
+    activate:
+      on-profile: docklet-redis-prod
+  redis:
+    host: redis-prod
+    port: 6379
+
+# ===== KAFKA DEV =====
+---
+spring:
+  config:
+    activate:
+      on-profile: kafka-dev
+  kafka:
+    bootstrap-servers: kafka:9092
+
+# ===== KAFKA PROD =====
+---
+spring:
+  config:
+    activate:
+      on-profile: kafka-prod
+  kafka:
+    bootstrap-servers: kafka-prod:9092
+
+# ===== AUTH-SERVICE (общий для сервиса) =====
+---
+spring:
+  config:
+    activate:
+      on-profile: auth-service
+  application:
+    name: auth-service
+server:
+  port: 8081
+
+# ===== USER-SERVICE (общий для сервиса) =====
+---
+spring:
+  config:
+    activate:
+      on-profile: user-service
+  application:
+    name: user-service
+server:
+  port: 8082
